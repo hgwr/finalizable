@@ -1,0 +1,24 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+  Exclude:
+    - 'spec/**/*'
+    - 'vendor/bundle/**/*'
+
+Lint/Debugger:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 160
+  AllowURI: true
+  Exclude:
+    - config/routes.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
