@@ -16,15 +16,16 @@ module Finalizable
     end
 
     def method_added(method_name)
+      super(method_name)
       prevent_override?(method_name)
     end
 
     def prevent_override?(method_name)
-      raise_error_if_prohibited_methods_are_overridden(method_name)
-      warn_if_prohibited_methods_are_overridden(method_name)
+      raise_error_if_prohibited_methods_is_overridden(method_name)
+      warn_if_prohibited_methods_is_overridden(method_name)
     end
 
-    def raise_error_if_prohibited_methods_are_overridden(method_name)
+    def raise_error_if_prohibited_methods_is_overridden(method_name)
       @@final_methods.each do |class_name, final_methods|
         ancestors = self.ancestors.dup
         ancestors.shift # remove myself from the list
@@ -34,7 +35,7 @@ module Finalizable
       end
     end
 
-    def warn_if_prohibited_methods_are_overridden(method_name)
+    def warn_if_prohibited_methods_is_overridden(method_name)
       @@somewhat_final_methods.each do |class_name, final_methods|
         ancestors = self.ancestors.dup
         ancestors.shift # remove myself from the list

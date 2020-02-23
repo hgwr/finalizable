@@ -3,6 +3,7 @@ RSpec.describe Finalizable do
     expect(Finalizable::VERSION).not_to be nil
   end
 
+  let!(:grand_parent) { Finalizable::Example::GrandParentClass.new }
   let!(:parent) { Finalizable::Example::ParentClass.new }
   let!(:subclass) { Finalizable::Example::AClassSomeMethodsAreNotAllowedOverriding.new }
   let!(:rescued_subclass) { Finalizable::Example::ThisClassFacesOverrideErrorWhenLoading.new }
@@ -28,14 +29,18 @@ RSpec.describe Finalizable do
 
   it 'should be loaded a class that has overriding issues because we caught the exception in the spec_helper.rb' do
     expect(defined? Finalizable::Example::ThisClassFacesOverrideErrorWhenLoading).to be_truthy
-    expect(rescued_subclass.final_method_defined_in_parent_class).to eq(:return_value_from_subclass)
+    expect(rescued_subclass.final_method_defined_in_parent_class).to eq(:return_value_from_parent_class)
   end
 
   it 'should be warned when overriding a somewhat prohibited method' do
     expect(subclass.somewhat_final_method_defined_in_parent_class).to eq(:return_value_from_subclass)
-    correct_warning_message = "WARNING: Child class \
-'Finalizable::Example::AClassSomeMethodsAreNotAllowedOverriding' should not override parent class method \
-'Finalizable::Example::ParentClass.somewhat_final_method_defined_in_parent_class'."
+    correct_warning_message = "\
+WARNING: Child class 'Finalizable::Example::AClassSomeMethodsAreNotAllowedOverriding' \
+should not override parent class method \
+'Finalizable::Example::ParentClass.somewhat_final_method_defined_in_parent_class'.\n\
+WARNING: Child class 'Finalizable::Example::OverridingSomewhatFinalMethodInGrandParent' \
+should not override parent class method \
+'Finalizable::Example::GrandParentClass.somewhat_final_method_defined_in_grand_parent_class'."
     expect(Finalizable::TestSensor.warning_message).to eq(correct_warning_message)
   end
 end

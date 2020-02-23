@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'finalizable'
+require 'lib/finalizable/example/grand_parent_class'
 require 'lib/finalizable/example/parent_class'
 
 module Finalizable
@@ -23,6 +24,7 @@ require 'stringio'
 @original_stderr = $stderr
 $stderr = StringIO.new
 require 'lib/finalizable/example/a_class_some_methods_are_not_allowed_overriding'
+require 'lib/finalizable/example/overriding_somewhat_final_method_in_grand_parent'
 $stderr.rewind
 Finalizable::TestSensor.warning_message = $stderr.string.chomp
 $stderr = @original_stderr

@@ -1,7 +1,7 @@
 module Finalizable
   module Example
     # Parent class for testing
-    class ParentClass
+    class ParentClass < GrandParentClass
       include ::Finalizable
       final :final_method_defined_in_parent_class
       somewhat_final :somewhat_final_method_defined_in_parent_class
