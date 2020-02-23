@@ -19,6 +19,7 @@ rescue Finalizable::OverrideError => e
   Finalizable::TestSensor.occured_error = e
 end
 
+require 'stringio'
 @original_stderr = $stderr
 $stderr = StringIO.new
 require 'lib/finalizable/example/a_class_some_methods_are_not_allowed_overriding'

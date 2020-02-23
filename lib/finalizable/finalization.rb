@@ -43,13 +43,5 @@ module Finalizable
         end
       end
     end
-
-    def find_overridden_class(ancestors, method_name)
-      ancestors.find { |klass| dose_klass_have_the_method?(klass, method_name) }
-    end
-
-    def dose_klass_have_the_method?(klass, method_name)
-      klass.instance_methods.include?(method_name)
-    end
   end
 end
