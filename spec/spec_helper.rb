@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'finalizable'
+require 'lib/finalizable/example/a_module_has_method_added'
 require 'lib/finalizable/example/grand_parent_class'
 require 'lib/finalizable/example/parent_class'
 

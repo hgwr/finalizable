@@ -43,4 +43,22 @@ should not override parent class method \
 'Finalizable::Example::GrandParentClass.somewhat_final_method_defined_in_grand_parent_class'."
     expect(Finalizable::TestSensor.warning_message).to eq(correct_warning_message)
   end
+
+  it 'should not prevent method_added in another module' do
+    added_methods_on_parent_class = %i(
+      final_method_defined_in_grand_parent_class
+      somewhat_final_method_defined_in_grand_parent_class
+      overridable_method_defined_in_grand_parent_class
+      final_method_defined_in_parent_class
+      somewhat_final_method_defined_in_parent_class
+      overridable_method_defined_in_parent_class
+      final_method_defined_in_grand_parent_class
+      somewhat_final_method_defined_in_parent_class
+      overridable_method_defined_in_parent_class
+      a_method_defined_in_sub_class
+      somewhat_final_method_defined_in_grand_parent_class
+      a_method_defined_in_sub_class
+    ).sort
+    expect(Finalizable::Example::ParentClass.added_methods.sort).to eq(added_methods_on_parent_class)
+  end
 end

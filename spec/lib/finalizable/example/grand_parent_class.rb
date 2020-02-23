@@ -2,6 +2,7 @@ module Finalizable
   module Example
     # Grand parent class for testing
     class GrandParentClass
+      include AModuleHasMethodAdded
       include ::Finalizable
       final :final_method_defined_in_grand_parent_class
       somewhat_final :somewhat_final_method_defined_in_grand_parent_class
