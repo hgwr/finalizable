@@ -1,6 +1,9 @@
-require "finalizable/version"
+require 'finalizable/version'
+require 'finalizable/finalization'
 
+# Finalizable module
 module Finalizable
-  class Error < StandardError; end
-  # Your code goes here...
+  def self.included(klass)
+    klass.extend(Finalization)
+  end
 end
