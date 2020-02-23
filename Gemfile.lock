@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    finalizable (0.1.0)
+    finalizable (0.1.1)
 
 GEM
   remote: https://rubygems.org/
