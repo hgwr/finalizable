@@ -1,8 +1,11 @@
 # Finalizable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/finalizable`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem makes the specified method non-overridable in Ruby.
 
-TODO: Delete this and the text above, and describe your gem
+- I found [the awesome question in stack overflow](https://stackoverflow.com/questions/708642/how-to-make-a-base-class-method-non-overridable-in-ruby).
+- In the answer section, [Original page](http://www.thesorensens.org/2006/10/06/final-methods-in-ruby-prevent-method-override/) is intrudoced.
+- [Original page](http://www.thesorensens.org/2006/10/06/final-methods-in-ruby-prevent-method-override/) is not accessible now (2020-02-23).
+- I refered [the page in WayBack Machine](https://web.archive.org/web/20080226085648/http://www.thesorensens.org/2006/10/06/final-methods-in-ruby-prevent-method-override/).
 
 ## Installation
 
