@@ -1,4 +1,3 @@
-require 'pry-byebug'
 module Finalizable
   # Finalizable Error class
   class OverrideError < StandardError; end
@@ -10,12 +9,10 @@ module Finalizable
 
     def final(*names)
       @@final_methods[self] = names
-      @@final_methods
     end
 
     def somewhat_final(*names)
       @@somewhat_final_methods[self] = names
-      @@somewhat_final_methods
     end
 
     def method_added(method_name)
@@ -32,7 +29,7 @@ module Finalizable
         ancestors = self.ancestors.dup
         ancestors.shift # remove myself from the list
         if ancestors.include?(class_name) && final_methods.include?(method_name)
-          raise Finalizable::OverrideError.new("Child class '#{self}' should not override parent class method '#{class_name}.#{method_name}'.")
+          raise Finalizable::OverrideError, "Child class '#{self}' should not override parent class method '#{class_name}.#{method_name}'."
         end
       end
     end
