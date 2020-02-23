@@ -23,7 +23,7 @@ RSpec.describe Finalizable do
   end
 
   it 'should be that overriding a prohibited method causes raising an error when loading time not runtime' do
-    expect(Finalizable::TestData.occured_error).to be_a Finalizable::OverrideError
+    expect(Finalizable::TestSensor.occured_error).to be_a Finalizable::OverrideError
   end
 
   it 'should be loaded a class that has overriding issues because we caught the exception in the spec_helper.rb' do
@@ -36,6 +36,6 @@ RSpec.describe Finalizable do
     correct_warning_message = "WARNING: Child class \
 'Finalizable::Example::AClassSomeMethodsAreNotAllowedOverriding' should not override parent class method \
 'Finalizable::Example::ParentClass.somewhat_final_method_defined_in_parent_class'."
-    expect(Finalizable::TestData.warning_message).to eq(correct_warning_message)
+    expect(Finalizable::TestSensor.warning_message).to eq(correct_warning_message)
   end
 end
