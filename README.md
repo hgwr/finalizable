@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/hgwr/finalizable.svg?branch=master)](https://travis-ci.com/hgwr/finalizable) 
+[![Gem Version](https://badge.fury.io/rb/finalizable.svg)](https://badge.fury.io/rb/finalizable)
+
 # Finalizable
 
 This gem makes the specified method non-overridable in Ruby.
@@ -25,7 +28,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+see `lib/finalizable/example/`
+
+Example of parent class which is using `final` and `somewhat_final`.
+
+```ruby
+class ParentClass
+  include ::Finalizable
+  final :final_method_defined_in_parent_class
+  somewhat_final :somewhat_final_method_defined_in_parent_class
+
+  def final_method_defined_in_parent_class
+    :return_value_from_parent_class
+  end
+
+  def somewhat_final_method_defined_in_parent_class
+    :return_value_from_parent_class
+  end
+
+  def overridable_method_defined_in_parent_class
+    :return_value_from_parent_class
+  end
+end
+```
+
+- If subclass overrides the method `final_method_defined_in_parent_class`, you will get `Finalizable::OverrideError` on loading time not runtime.
+- If subclass overrides the method `somewhat_final_method_defined_in_parent_class`, you will get a `Kernel#.warn` message. 
+
+```
+WARNING: Child class 'Finalizable::Example::AClassSomeMethodsAreNotAllowedOverriding' should not override parent class method 'Finalizable::Example::ParentClass.somewhat_final_method_defined_in_parent_class'.
+```
 
 ## Development
 
